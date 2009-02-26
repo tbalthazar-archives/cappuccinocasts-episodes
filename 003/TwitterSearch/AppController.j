@@ -65,7 +65,7 @@
     [self showSearchResults:data.results] ;
 }
 
-- (void)connection(CPJSONPConnection)aConnection didFailWithError:(CPString)error
+- (void)connection:(CPJSONPConnection)aConnection didFailWithError:(CPString)error
 {
     alert(error) ;
 }
