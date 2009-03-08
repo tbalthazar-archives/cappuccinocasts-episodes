@@ -53,7 +53,7 @@
 {
     var userInput = prompt("Enter a search keyword") ;
     
-    if (prompt) 
+    if (userInput) 
     {
         var request = [CPURLRequest requestWithURL:"http://search.twitter.com/search.json?q=" + encodeURIComponent(userInput)] ;
         twitterConnection = [CPJSONPConnection connectionWithRequest:request callback:"callback" delegate:self] ;
