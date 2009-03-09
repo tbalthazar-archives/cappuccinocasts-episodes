@@ -39,7 +39,7 @@
 {
     if ([label stringValue]==[label placeholderString])
     {
-        return true;
+        return YES;
     }
     else
     {
