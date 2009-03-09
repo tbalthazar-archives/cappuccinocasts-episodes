@@ -39,14 +39,11 @@
 {
     if ([label stringValue]==[label placeholderString])
     {
-        [window close];
+        return true;
     }
     else
     {
-        if (confirm('Are you sure?'))
-        {
-            [window close];
-        }
+        return confirm('Are you sure?');
     }
 
 }
