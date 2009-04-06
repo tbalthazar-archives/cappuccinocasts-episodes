@@ -11,30 +11,34 @@
 
 @implementation AppController : CPObject
 {
-    CPView      _contentView ;
-    CPSlider    _slider ;
+    // In the screencast, I renamed contentView -> _contentView and slider -> _slider.
+    // It is a good guideline *not* to use the _ for the instance variables in your code
+    // to avoid conflict with Cappuccino super class instance variables
+    // Thanks to Ross for pointing this out.
+    CPView      contentView ;
+    CPSlider    slider ;
 }
 
 - (void)applicationDidFinishLaunching:(CPNotification)aNotification
 {
     var theWindow = [[CPWindow alloc] initWithContentRect:CGRectMakeZero() styleMask:CPBorderlessBridgeWindowMask],
-        _contentView = [theWindow contentView];
+        contentView = [theWindow contentView];
     
     // slider
-    _slider = [[CPSlider alloc] initWithFrame:CGRectMake((CGRectGetWidth([_contentView bounds]) - 100.0) / 2.0, 60.0, 100.0, 16.0)];
-    [_slider setMinValue:50.0];
-    [_slider setMaxValue:250.0];
-    [_slider setValue:50.0] ;
-    [_slider setTarget:self];
-    [_slider setAction:@selector(sliderChangedValue:)];
-    [_contentView addSubview:_slider];
+    slider = [[CPSlider alloc] initWithFrame:CGRectMake((CGRectGetWidth([contentView bounds]) - 100.0) / 2.0, 60.0, 100.0, 16.0)];
+    [slider setMinValue:50.0];
+    [slider setMaxValue:250.0];
+    [slider setValue:50.0] ;
+    [slider setTarget:self];
+    [slider setAction:@selector(sliderChangedValue:)];
+    [contentView addSubview:slider];
     
     // button
-    var button = [[CPButton alloc] initWithFrame:CGRectMake((CGRectGetWidth([_contentView bounds]) - 150.0) / 2.0, 20.0, 150.0, 24.0)] ;
+    var button = [[CPButton alloc] initWithFrame:CGRectMake((CGRectGetWidth([contentView bounds]) - 150.0) / 2.0, 20.0, 150.0, 24.0)] ;
     [button setTitle:@"Create a new Window"] ;
     [button setTarget:self] ;
     [button setAction:@selector(createNewWindow:)] ;
-    [_contentView addSubview:button] ;
+    [contentView addSubview:button] ;
     
     [theWindow orderFront:self];
 }
@@ -47,9 +51,9 @@
 
 - (void)createNewWindow:(id)sender
 {
-    var widowSize = [_slider value] ;
+    var widowSize = [slider value] ;
     var window = [[MyWindow alloc] initWithContentRect:CGRectMakeZero() styleMask:CPClosableWindowMask] ;
-    [window setFrameOrigin:CGPointMake((CGRectGetWidth([_contentView bounds]) - widowSize) / 2.0, 120.0)] ;
+    [window setFrameOrigin:CGPointMake((CGRectGetWidth([contentView bounds]) - widowSize) / 2.0, 120.0)] ;
     [window setFrameSize:CGSizeMake(widowSize, widowSize)] ;
     
     [window orderFront:self] ;
