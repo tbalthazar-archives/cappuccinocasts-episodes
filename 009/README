@@ -1,0 +1,8 @@
+This is the blog application built in the offical 15 minute Rails screencast.
+
+http://rubyonrails.org/screencasts
+
+You will need to copy the database.yml file and migrate the database.
+
+cp config/database_example.yml config/database.yml
+rake db:migrate
